@@ -13,6 +13,7 @@
             background-color: #f9f1f1;
             font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden;
         }
         #container {
             max-width: 300px;
@@ -41,27 +42,83 @@
             color: #fff;
             position: absolute;
         }
+        #message {
+            font-size: 24px;
+            color: #ff6b6b;
+            display: none;
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100px) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
     </style>
 </head>
 <body>
     <div id="container">
-        <h1>Do you love me? 💖</h1>
+        <h1 id="question">Do you love me? 💖</h1>
         <button id="yesBtn">Yes</button>
         <button id="noBtn">No</button>
     </div>
+    <div id="message">I love you so muchhhhh habicakes muah muah muaaaah 💖💍</div>
 
     <script>
         const noBtn = document.getElementById('noBtn');
-        noBtn.addEventListener('mouseover', () => {
-            const x = Math.floor(Math.random() * (window.innerWidth - noBtn.clientWidth));
-            const y = Math.floor(Math.random() * (window.innerHeight - noBtn.clientHeight));
+        const yesBtn = document.getElementById('yesBtn');
+        const question = document.getElementById('question');
+        const message = document.getElementById('message');
+
+        let step = 1;
+
+        noBtn.addEventListener('mouseover', moveButton);
+        yesBtn.addEventListener('click', handleYesClick);
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noBtn.clientWidth - 50);
+            const y = Math.random() * (window.innerHeight - noBtn.clientHeight - 50);
             noBtn.style.left = `${x}px`;
             noBtn.style.top = `${y}px`;
-        });
+        }
 
-        document.getElementById('yesBtn').addEventListener('click', () => {
-            alert('I love you too! ❤️');
-        });
+        function handleYesClick() {
+            if (step === 1) {
+                question.innerText = "I love you too, \n\nmay iban ka?";
+                step++;
+            } else if (step === 2) {
+                question.innerText = "hmmmm okay, \n\nwill you marry me? 💍";
+                step++;
+            } else if (step === 3) {
+                showFinalMessage();
+            }
+        }
+
+        function showFinalMessage() {
+            question.style.display = 'none';
+            yesBtn.style.display = 'none';
+            noBtn.style.display = 'none';
+            message.style.display = 'block';
+            addConfetti();
+        }
+
+        function addConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDelay = `${Math.random() * 3}s`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                document.body.appendChild(confetti);
+                confetti.addEventListener('animationend', () => confetti.remove());
+            }
+        }
     </script>
 </body>
 </html>
