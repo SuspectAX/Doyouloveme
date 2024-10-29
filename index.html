@@ -5,60 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just a Little Question 😊</title>
     <style>
+        /* Basic Styles */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f9f1f1;
-            font-family: Arial, sans-serif;
-            text-align: center;
+            background-color: #111;
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             overflow: hidden;
+            text-align: center;
         }
+
         #container {
-            max-width: 300px;
+            max-width: 350px;
             padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #222;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            color: #eee;
+            border: 1px solid #333;
         }
+
         h1 {
-            color: #ff6b6b;
+            color: #f8d7da;
+            font-weight: bold;
+            font-size: 24px;
         }
+
         button {
-            font-size: 16px;
+            font-size: 18px;
             margin: 10px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
+
         #yesBtn {
             background-color: #28a745;
             color: #fff;
         }
+
         #noBtn {
             background-color: #dc3545;
             color: #fff;
             position: absolute;
         }
+
         #message {
-            font-size: 24px;
+            font-size: 28px;
             color: #ff6b6b;
+            font-weight: bold;
             display: none;
         }
+
+        /* Confetti Styling */
         .confetti {
             position: fixed;
             width: 10px;
             height: 10px;
-            background: #ff6b6b;
-            opacity: 0.7;
+            opacity: 0.8;
             border-radius: 50%;
             animation: fall 3s linear infinite;
         }
+
         @keyframes fall {
             from { transform: translateY(-100px) rotate(0deg); }
             to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Fireworks Styling */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #ff6b6b;
+            opacity: 0;
+            animation: explode 2s linear infinite;
+        }
+
+        @keyframes explode {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(2); }
+            100% { opacity: 0; transform: scale(3); }
         }
     </style>
 </head>
@@ -90,10 +124,10 @@
 
         function handleYesClick() {
             if (step === 1) {
-                question.innerText = "I love you tooooo, \n\nBJ moko later?";
+                question.innerText = "I love you toooo, \n\nBJ moko later???";
                 step++;
             } else if (step === 2) {
-                question.innerText = "hmmmm okay, \n\ndamo BJ ha? 💍";
+                question.innerText = "hmmmm okay, \n\nsure na damo BJ haaa? 💍";
                 step++;
             } else if (step === 3) {
                 showFinalMessage();
@@ -106,17 +140,29 @@
             noBtn.style.display = 'none';
             message.style.display = 'block';
             addConfetti();
+            addFireworks();
         }
 
         function addConfetti() {
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
                 confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.animationDelay = `${Math.random() * 3}s`;
                 confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
                 document.body.appendChild(confetti);
                 confetti.addEventListener('animationend', () => confetti.remove());
+            }
+        }
+
+        function addFireworks() {
+            for (let i = 0; i < 20; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                firework.style.left = `${Math.random() * 100}vw`;
+                firework.style.top = `${Math.random() * 100}vh`;
+                firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                document.body.appendChild(firework);
+                firework.addEventListener('animationend', () => firework.remove());
             }
         }
     </script>
