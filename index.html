@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just a Little Question 😊</title>
+    <title>Just a Reminder 😊</title>
     <style>
         /* Basic Styles */
         body {
@@ -98,11 +98,11 @@
 </head>
 <body>
     <div id="container">
-        <h1 id="question">Do you love me? 💖</h1>
+        <h1 id="question">Do you have a problem?</h1>
         <button id="yesBtn">Yes</button>
         <button id="noBtn">No</button>
     </div>
-    <div id="message">I love you so muchhhhh habicakes muah muah muaaaah 💖💍</div>
+    <div id="message">You can solve it right?</div>
 
     <script>
         const noBtn = document.getElementById('noBtn');
@@ -124,10 +124,10 @@
 
         function handleYesClick() {
             if (step === 1) {
-                question.innerText = "I love you toooo, \n\nBJ moko later???";
+                question.innerText = "You can do it right? \n\nYou have the courage to do it!";
                 step++;
             } else if (step === 2) {
-                question.innerText = "hmmmm okay, \n\nsure na damo BJ haaa? 💍";
+                question.innerText = "See? \n\nYou just have to accept it and face it? \n\nNothing is impossible to you!";
                 step++;
             } else if (step === 3) {
                 showFinalMessage();
