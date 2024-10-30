@@ -102,7 +102,7 @@
         <button id="yesBtn">Yes</button>
         <button id="noBtn">No</button>
     </div>
-    <div id="message">You can solve it right?</div>
+    <div id="message">See? \n\nYou just have to accept it and face it. \n\nNothing is impossible to you!</div>
 
     <script>
         const noBtn = document.getElementById('noBtn');
@@ -127,7 +127,7 @@
                 question.innerText = "You can do it right? \n\nYou have the courage to do it!";
                 step++;
             } else if (step === 2) {
-                question.innerText = "See? \n\nYou just have to accept it and face it. \n\nNothing is impossible to you!";
+                question.innerText = "You can solve it right?";
                 step++;
             } else if (step === 3) {
                 showFinalMessage();
